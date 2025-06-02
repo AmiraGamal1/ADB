@@ -18,15 +18,13 @@
 
 ---
 
-###  Transaction Control Commands – `SAVEPOINT`, `ROLLBACK`, and `COMMIT`
+### Transaction Control Commands – `SAVEPOINT`, `ROLLBACK`, and `COMMIT`
 
-### 🎯 Objective
-
-Understand how to manage multi-step database transactions using SQL transaction control commands.
+**Objective:** Understand how to manage multi-step database transactions using SQL transaction control commands.
 
 ---
 
-### ▶️ BEGIN
+#### BEGIN
 
 Start a new transaction:
 
@@ -38,7 +36,7 @@ START TRANSACTION;
 
 ---
 
-### 🔖 SAVEPOINT
+#### SAVEPOINT
 
 Set a point you can roll back to later:
 
@@ -54,23 +52,23 @@ SAVEPOINT sp2;
 INSERT INTO employees (id, name, department) VALUES (3, 'Charlie', 'IT');
 ```
 
-> ✅ At this point, we have added 3 employees and created two savepoints: `sp1` and `sp2`.
+> At this point, we have added 3 employees and created two savepoints: `sp1` and `sp2`.
 
 ---
 
-### 🔁 ROLLBACK
+#### ROLLBACK
 
 Undo part or all of a transaction.
 
-#### 🔹 Rollback to a Savepoint
+##### Rollback to a Savepoint
+
 
 ```sql
 ROLLBACK TO sp2;
 ```
-
 > This undoes only the insertion of **Charlie**, keeping **Alice** and **Bob**.
 
-#### 🔸 Rollback Entire Transaction
+##### Rollback Entire Transaction
 
 ```sql
 ROLLBACK;
@@ -80,7 +78,7 @@ ROLLBACK;
 
 ---
 
-### 💾 COMMIT
+#### COMMIT
 
 Make all changes permanent:
 
@@ -92,7 +90,7 @@ COMMIT;
 
 ---
 
-### 📌 Summary
+#### Summary
 
 * Use `SAVEPOINT` to mark logical checkpoints.
 * Use `ROLLBACK` to undo mistakes.
@@ -120,6 +118,7 @@ This gives you control and safety when working with important or complex data op
 | Isolation   | Set using `SET TRANSACTION ISOLATION LEVEL`    |
 | Durability  |  Ensured by `COMMIT` and Logging mechanisms (e.g., write-ahead logs, redo logs) |
 
+---
 
 ### Why Concurrency Control is Needed
 
@@ -131,7 +130,7 @@ Several problems can occur when concurrent transactions execute ^^without proper
 
 This problem occurs when two or more transactions read and update the same data item concurrently without being aware of each other's changes. As a result, the last update overwrites the previous ones, leading to the loss of some updates and causing data inconsistency.
 
-###  Real-World Scenario
+**Real-World Scenario**
 
 Two users (sessions) try to withdraw money from the same account at the same time:
 
@@ -140,84 +139,71 @@ Two users (sessions) try to withdraw money from the same account at the same tim
 - If both updates happen without proper control, one will overwrite the other, leads to lost updates and incorrect final balance.
 
 
-### Example of the Scenario in SQL:
+**Example of the Scenario in SQL:**
 
 To simulate a Lost Update in MySQL using two concurrent sessions:
 
-#### 1) Create a Table:
-Create any Database and create a table named `accounts` and insert sample data into it:
+1. Create a Table:
+    Create any Database and create a table named `accounts` and insert sample data into it:
 
-```sql
+    ```sql
 
-CREATE TABLE accounts (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    balance NUMERIC(10,2)
-);
+    CREATE TABLE accounts (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        balance NUMERIC(10,2)
+    );
 
+    INSERT INTO accounts (name, balance) VALUES ('Ali', 100.00);
 
+    ```
+    ![Lost Update Example](images/lost update 1.png){ width="400" }
 
-INSERT INTO accounts (name, balance) VALUES ('Ali', 100.00);
+2.  Session A (user A):
+    ```SQL
+    START TRANSACTION;
+    SELECT balance FROM accounts WHERE id = 1;
+    UPDATE accounts SET balance = 70 WHERE id = 1;
+    ```
+    ![Lost Update Example](images/lost update 2.png){ width="400" }
+    
+    Here, user A reads the balance (100) and calculates the new balance: 100 - 30 = 70, then updates the record without commit. 
 
-```
+3. Session B (user B, in another window):
 
-![Lost Update Example](images/lost update 1.png){ width="400" }
+    ```SQL
+    START TRANSACTION;
+    SELECT balance FROM accounts WHERE id = 1;
+    UPDATE accounts SET balance = 50 WHERE id = 1;
+    COMMIT;
+    ```
+    ![Lost Update Example](images/lost update 3.png){ width="400" }
+    Here, user B reads the balance (100) and calculates the new balance: 100 - 50 = 50, then  updates the record and commit. 
+    !!! Note  "to open two sessions in MySQL Workbench; Go to File → New Query Tab to open Session A, Repeat to open another tab (Session B). Each tab is a separate session — you can run SQL commands independently in each"
 
-#### 2) Session A (user A):
+4. Back to session A:
+    Now return back to session A again and commit the session:
+    ![Lost Update Example](images/lost update 4.png){ width="400" }
 
-```SQL
+5. Check the final balance:
 
-START TRANSACTION;
-SELECT balance FROM accounts WHERE id = 1;
-UPDATE accounts SET balance = 70 WHERE id = 1;
+    ```SQL
 
-```
+    SELECT * FROM accounts;
 
-![Lost Update Example](images/lost update 2.png){ width="400" }
+    ``` 
+    ![Lost Update Example](images/lost update 5.png){ width="400" }
 
-Here, user A reads the balance (100) and calculates the new balance: 100 - 30 = 70, then updates the record without commit. 
+    Here we will see the balance becomes 70, and user B’s update (which should make the balance 50) is lost.
 
-#### 3) Session B (user B, in another window):
+6. Conclusion:
 
-```SQL
+    -	Both transactions read the same initial value (100).
+    -	Each transaction updates the data without being aware of the other's changes.
+    -	The last transaction to commit determines the final value, possibly erasing the other's update.
+    -	Even though no errors appear, data integrity is lost. This demonstrates the importance of proper concurrency control in database systems.
 
-START TRANSACTION;
-SELECT balance FROM accounts WHERE id = 1;
-UPDATE accounts SET balance = 50 WHERE id = 1;
-COMMIT;
-
-```
-
-![Lost Update Example](images/lost update 3.png){ width="400" }
-
-Here, user B reads the balance (100) and calculates the new balance: 100 - 50 = 50, then  updates the record and commit. 
-
-⚠️ ( Note:  to open two sessions in MySQL Workbench; Go to File → New Query Tab to open Session A, Repeat to open another tab (Session B). Each tab is a separate session — you can run SQL commands independently in each).
-
-#### 4) Back to session A:
-
-Now return back to session A again and commit the session:
- 
- ![Lost Update Example](images/lost update 4.png){ width="400" }
-
-#### 5) Check the final balance:
-
-```SQL
-
-SELECT * FROM accounts;
-
-``` 
- ![Lost Update Example](images/lost update 5.png){ width="400" }
-
- Here we will see the balance becomes 70, and user B’s update (which should make the balance 50) is lost.
-
-
-#### Conclusion:
--	Both transactions read the same initial value (100).
--	Each transaction updates the data without being aware of the other's changes.
--	The last transaction to commit determines the final value, possibly erasing the other's update.
--	Even though no errors appear, data integrity is lost. This demonstrates the importance of proper concurrency control in database systems.
-
+---
 
 #### 2. The Temporary Update (or Dirty Read) Problem
 
@@ -298,91 +284,80 @@ In an online electronics store:
     </figure>
 7. Conclusion: Session 2 was able to see the updated quantity (0 laptops) before Session 1 rolled back. This leads to inconsistent or misleading data, which is why isolation levels like `READ COMMITTED or REPEATABLE READ are important in real-world applications.
 
+---
+
 #### 3. The Incorrect Summary Problem
 
-### 🧠 Problem Statement
+**Problem Statement**
 
 When you use aggregate functions like `SUM`, `AVG`, and `COUNT` on a table while other transactions are modifying the data, the result may be **inconsistent**. This is because some rows might be updated **before** the function reads them, and others **after**.
 
----
+1. Create the Table
 
-### 🛠️ Step 1: Create the Table
+    ```sql
+    CREATE TABLE accounts (
+        id INT PRIMARY KEY,
+        balance DECIMAL(10,2)
+    );
+    ```
 
-```sql
-CREATE TABLE accounts (
-    id INT PRIMARY KEY,
-    balance DECIMAL(10,2)
-);
-```
+2. Insert Initial Data
+    ```sql
+    INSERT INTO accounts (id, balance) VALUES
+    (1, 500.00),
+    (2, 750.00),
+    (3, 1200.00);
+    ```
 
----
+3. Simulate Concurrent Transactions
 
-### 📥 Step 2: Insert Initial Data
+    **Transaction T1 (Session 1)**
 
-```sql
-INSERT INTO accounts (id, balance) VALUES
-(1, 500.00),
-(2, 750.00),
-(3, 1200.00);
-```
+    ```sql
+    BEGIN;
+    UPDATE accounts SET balance = balance + 100 WHERE id = 1;
+    -- not committed
+    ```
+    #### Transaction T2 (Session 2)
 
----
+    ```sql
+    SELECT SUM(balance) FROM accounts;
+    ```
+    At this point, SUM() still uses the old value for id = 1 because the update in Session 1 (T1) hasn’t been committed.
 
-### 🔄 Step 3: Simulate Concurrent Transactions
+    **SUM(balance) = 2450.00**
 
-####  Transaction T1 (Session 1)
+4. Add COMMIT to T1 and Re-run
 
-```sql
-BEGIN;
-UPDATE accounts SET balance = balance + 100 WHERE id = 1;
--- not committed
-```
-#### Transaction T2 (Session 2)
+    **Transaction T1 (Session 1)**
 
-```sql
-SELECT SUM(balance) FROM accounts;
-```
-At this point, SUM() still uses the old value for id = 1 because the update in Session 1 (T1) hasn’t been committed.
+    ```sql
+    BEGIN;
+    UPDATE accounts SET balance = balance + 100 WHERE id = 1;
+    COMMIT;
+    ```
+    **Transaction T2 (Session 2)**
 
-SUM(balance) = 2450.00
+    ```sql
+    SELECT SUM(balance) FROM accounts;
+    ```
+    Now, SUM() uses the new value for id = 1 because the update in T1 has been committed.
 
----
+    **SUM(balance) = 2550.00**
 
-### 💾 Step 4: Add COMMIT to T1 and Re-run
+5. Conclusion:
 
-#### Transaction T1 (Session 1)
-
-
-```sql
-BEGIN;
-UPDATE accounts SET balance = balance + 100 WHERE id = 1;
-COMMIT;
-```
-
- #### Transaction T2 (Session 2)
-
-```sql
-SELECT SUM(balance) FROM accounts;
-```
-Now, SUM() uses the new value for id = 1 because the update in T1 has been committed.
-
-SUM(balance) = 2550.00
-
-📌 Summary
-
-If T1 is not committed, T2 sees old values.
-
-If T1 is committed, T2 sees updated values.
-
-Proper transaction management ensures consistent query results.
+    * If T1 is not committed, T2 sees old values.
+    * If T1 is committed, T2 sees updated values.
+    * Proper transaction management ensures consistent query results.
 
 ---
 
 ## Assignment: Simulate The Unrepeatable Read Problem
 !!! attention "Due Date on 14/6/2025"
 
-*   Read page 752 on the primary book (FUNDAMENTALS OF Database Systems)
-*   <span style="color: red;">See the requirement about the structures of the lab [here](general_instructions.md)</span>
+* Read page 752 on the primary book (FUNDAMENTALS OF Database Systems)
+* <span style="color: red;"> See the requirement about the structures of the lab [**here**](general_instructions.md)</span>
 *   You can use any SQL editor (Online or Local), but be cautious — **transaction statements may vary slightly between different DBMSs**, and the use of `DO SLEEP` depends on the specific database engine. For example, `DO SLEEP()` is supported in MySQL 8.0.29+, while in other systems or older versions, you may need to use `SELECT SLEEP()` or an alternative approach.
 
 ### What to assign: 
