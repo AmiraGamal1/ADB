@@ -59,16 +59,7 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  </head>
   
   
     
@@ -274,6 +265,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Lab1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab 1
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -406,15 +416,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#screenshot-annotations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Screenshot Annotations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#lab-title" class="md-nav__link">
     <span class="md-ellipsis">
       Lab Title
@@ -424,9 +425,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#screenshot-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Screenshot Annotations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#deadline" class="md-nav__link">
     <span class="md-ellipsis">
       Deadline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plagiarism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plagiarism
     </span>
   </a>
   
@@ -467,6 +486,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -487,9 +528,17 @@
 <h2 id="please-follow-these-instructions-carefully">Please follow these instructions carefully:</h2>
 <h3 id="file-submission">File Submission</h3>
 <ul>
+<li>At the top of your document, please include the following information:<ul>
+<li>Full Name</li>
+<li>Department</li>
+<li>Index Number</li>
+</ul>
+</li>
 <li>Submit your assignment as a single PDF file.</li>
 <li>The PDF must include all required screenshots (code and output).</li>
 </ul>
+<h3 id="lab-title">Lab Title</h3>
+<p>Write the lab title as "Lab 0, Lab 1, ..." clearly at the top of your PDF.</p>
 <h3 id="screenshot-annotations">Screenshot Annotations</h3>
 <p><strong>On every screenshot containing SQL script, add a comment at the top with the following information:</strong></p>
 <ol>
@@ -501,8 +550,6 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="c1">-- Department: Computer Science, ...</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1">-- Index: 01x-xxx</span>
 </code></pre></div>
-<h3 id="lab-title">Lab Title</h3>
-<p>Write the lab title as "Lab 0, Lab 1, ..." clearly at the top of your PDF.</p>
 <h3 id="deadline">Deadline</h3>
 <ol>
 <li>
@@ -512,6 +559,12 @@
 <p>Late submissions may be penalised according to the situations.</p>
 </li>
 </ol>
+<h3 id="plagiarism">Plagiarism</h3>
+<ul>
+<li>You may discuss the assignment with other students, but all work must be completed individually.</li>
+<li>Plagiarism will be identified and penalized appropriately based on the circumstances.</li>
+<li>The use of AI tools to complete your tasks is not allowed. If detected, it will result in penalties.</li>
+</ul>
 
 
 
@@ -580,7 +633,5 @@
         <script src="../../js/open_links.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
+  </body>
 </html>

@@ -271,17 +271,17 @@ In an online electronics store:
     COMMIT;
     ```
 4. In Session 1: Run the transaction and wait
-    <figure markdown="span">
+
     ![Windows Setting](images/transaction 1-before rollback.png){ width="400" }
-    </figure>
+
 5. While Session 1 is still sleeping: Run Session 2
-    <figure markdown="span">
+
     ![Windows Setting](images/transaction 2.png){ width="400" }
-    </figure>
+
 6. After Session 1 completes and rolls back
-    <figure markdown="span">
+
     ![Windows Setting](images/transaction 1-after rollback.png){ width="400" }
-    </figure>
+
 7. Conclusion: Session 2 was able to see the updated quantity (0 laptops) before Session 1 rolled back. This leads to inconsistent or misleading data, which is why isolation levels like `READ COMMITTED or REPEATABLE READ are important in real-world applications.
 
 ---
