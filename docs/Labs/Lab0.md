@@ -170,8 +170,8 @@ We will use the **Python programming language** to simulate the following:
     </figure>
 
 ## Alteranative way to practice:
-    * Online Postgred server **[supabase](https://supabase.com/)**
-    * Online Python Editer **[programiz](https://www.programiz.com/python-programming/online-compiler/)**
+* Online Postgred server **[supabase](https://supabase.com/)**
+* Online Python Editer **[programiz](https://www.programiz.com/python-programming/online-compiler/)**
 
 ## Assignment: Install MySQL, Create a Database, and Query It
 !!! attention "Due Date on 24/5/2025"
