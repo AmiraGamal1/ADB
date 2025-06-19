@@ -250,7 +250,7 @@ This simple example shows how MVCC enables multiple users to read data at the sa
 
 You can clone this [repostory](https://github.com/mikeleo03/Database-Concurrency-Control/tree/main) to explore the internal details of concurrency control simulations.
 
-## Assignment (Simulate Deadlock Scienario)
+## Assignment (Simulate Deadlock Scenario)
 
 !!! attention "Due Date on 28/6/2025"
 
