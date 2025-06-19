@@ -10,7 +10,7 @@
 
 ## InnoDB Storage Engine
 
-A storage engine is a software that is used by a database management system to create, read, and update data from a database.**InnoDB** is a general purpose **transactional storage engine** for MySQL(since version 5.5.5), designed for high reliability and performance.
+A storage engine is a software that is used by a database management system to create, read, and update data from a database. **InnoDB** is a general purpose **transactional storage engine** for MySQL(since version 5.5.5), designed for high reliability and performance.
 
 ### Why Do We Use InnoDB in This Course?
 
@@ -27,7 +27,7 @@ SHOW ENGINES;
 ```
 Look for the InnoDB row in the result. It should show **DEFAULT** in the Support column, indicating that InnoDB is the default storage engine.
 <figure markdown="span">
-![InnoDB](images/InnoDB.png){ width="800" }
+![InnoDB](images/InnoDB.png){ width=800 }
 </figure>
 ### InnoDB Locking
 
@@ -252,11 +252,11 @@ You can clone this [repostory](https://github.com/mikeleo03/Database-Concurrency
 
 ## Assignment (Simulate Deadlock Scienario)
 
-!!! attention "Due Date on 14/6/2025"
+!!! attention "Due Date on 28/6/2025"
 
 * Read pages 789–792 from the primary textbook: Fundamentals of Database Systems.
 * <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
-* You must use MySQL, as this lab focuses specifically on the InnoDB storage engine.
+* <span style="color: red;">You must use MySQL</span>, as this lab focuses specifically on the InnoDB storage engine.
 
 ### What to assign: 
 
@@ -278,4 +278,4 @@ You can clone this [repostory](https://github.com/mikeleo03/Database-Concurrency
 
 9. A snippet from the InnoDB Monitor output showing that a deadlock has been detected and resolved. to do this you should re-run step 5 agin and observe the `LATEST DETECTED DEADLOCK`.
 
-10.  A brief paragraph discussing what happened and how InnoDB detects deadlock [Read this](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlock-detection.html).
+10. A brief paragraph discussing what happened and how InnoDB detects deadlock [Read this](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlock-detection.html).
