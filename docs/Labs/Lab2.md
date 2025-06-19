@@ -162,6 +162,88 @@ Imagine Ahmed's family and Mohamed's family both trying to book seats for a summ
 ---
 ### 2. Multiversion Concurrency Control (MVCC)
 
+### 🔹 Definition
+MVCC is a concurrency control technique used by many modern databases (like PostgreSQL, MySQL InnoDB, and Oracle) to allow multiple transactions to access the same data simultaneously without locking.
+
+### 🔧 How MVCC Works
+- Every time a transaction reads data, it sees a snapshot of the database at the time the transaction started.
+- When data is updated, the database creates a new version of the row instead of overwriting the old one.
+- Other transactions can continue reading the old version until they commit or refresh.
+
+---
+
+## Understanding MVCC in InnoDB
+
+### ✅ Objective
+Understand how MVCC in InnoDB allows multiple read operations to happen at the same time, without locking, and while updates may be happening in the background.
+
+---
+
+###  Step 1: Create the Table
+```sql
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    salary INT
+) ENGINE=InnoDB;
+```
+###  Step 2: Insert Initial Data
+
+```sql
+INSERT INTO employees (id, name, salary) VALUES
+(1, 'Alice', 5000),
+(2, 'Bob', 6000);
+```
+
+## Step 3: Start Two Sessions
+
+We will simulate **Session A (Reader)** and **Session B (Updater)**. You can do this using two different database connections (e.g., two tabs in MySQL Workbench).
+
+---
+
+### Session A (Reader)
+```sql
+START TRANSACTION;
+SELECT * FROM employees WHERE id = 2;
+```
+**Observation:**  
+All rows are returning back, `WHERE id = 2` returns `6000`.
+
+---
+
+### Session B (Updater) (In another tab)
+```sql
+START TRANSACTION;
+UPDATE employees SET salary = 9000 WHERE id = 2;
+COMMIT;
+```
+---
+
+### Back to Session A (Reader Again)
+```sql
+SELECT * FROM employees WHERE id = 2;
+```
+**Observation:**  
+Now it shows `9000` for `id=2`.
+
+---
+
+## 📌 Key Discussion Points
+
+| Feature        | Observation                                                  |
+|----------------|--------------------------------------------------------------|
+| **MVCC**       | Keeps a snapshot per transaction (using undo logs).          |
+| **Multiple Reads** | Readers don’t block writers, and writers don’t block readers. |
+| **Isolation**  | REPEATABLE READ is default in InnoDB – keeps results stable within a transaction. |
+| **Consistency**| Session A always sees the same data until it commits.        |
+| **Performance**| Improves concurrency: multiple users can safely read and write.|
+
+---
+
+## Summary
+
+This simple example shows how MVCC enables multiple users to read data at the same time, even if another transaction is updating the same rows. Each reader gets a consistent snapshot — a powerful feature of InnoDB.
+
 ---
 
 ## Advanced work
