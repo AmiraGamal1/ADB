@@ -16,12 +16,21 @@ theme:
     - navigation.tabs
     - navigation.sections
     - toc.integrate
+    - content.tooltips
     - navigation.top
     - search.suggest
     - search.highlight
     - content.tabs.link
-    - content.code.annotation
+    - content.code.annotate
     - content.code.copy
+    - content.code.select
+    - content.code.expand
+    - content.code.fold
+    - content.code.line_numbers
+    - content.code.highlight
+    - content.code.language
+    - content.code.title
+    - content.code.wrap
   language: en
   palette:
     - scheme: default
@@ -74,6 +83,11 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 copyright:
   © 2025 Amira – Aseel – Salma
