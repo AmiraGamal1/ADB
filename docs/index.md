@@ -30,7 +30,7 @@ Each lab builds on the previous one. Please complete them in sequence:
 1. [**Lab 0:**](Labs/Lab0.md) Environment Setup
 2. [**Lab 1:**](Labs/Lab1.md) Basics of Transaction Management and Its Properties
 3. [**Lab 2:**](Labs/Lab2.md) Concurrency Control Mechanisms
-4. **Lab 3:** Database Recovery Techniques (ARIES)
+4. [**Lab 3:**](Labs/Lab3.md)Database Recovery Techniques (ARIES)
 5. **Lab 4:** Database Security Measures
 
 !!! note

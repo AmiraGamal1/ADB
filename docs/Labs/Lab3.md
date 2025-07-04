@@ -10,23 +10,23 @@
 
 ## Basic Concepts Used in the Lab
 
-**Crash Recovery:** Crash recovery involves restoring the database to its ^most recent consistent state^ before a system failure occurred. The recovery process ensures that the **atomicity** and **durability** properties of transactions are preserved.
+<u>**Crash Recovery:**</u> Crash recovery involves restoring the database to its ^most recent consistent state^ before a system failure occurred. The recovery process ensures that the **atomicity** and **durability** properties of transactions are preserved.
 
-**Log Sequence Number (LSN)** Is a unique incremental value which is assigned whenever changes occur in the InnoDB storage engine.
+<u>**Log Sequence Number (LSN)**</u> Is a unique incremental value which is assigned whenever changes occur in the InnoDB storage engine.
 
-**Write Ahead Log (WAL)/ Redo Log** The Write-Ahead Log (WAL) called the redo log in **InnoDB**, is a sequential file that records all changes made to the database by ongoing transactions. These changes are written to the log before they are applied to the actual data files on disk.
+<u>**Write Ahead Log (WAL)/ Redo Log**</u> The Write-Ahead Log (WAL) called the redo log in **InnoDB**, is a sequential file that records all changes made to the database by ongoing transactions. These changes are written to the log before they are applied to the actual data files on disk.
 
-**Undo Log** This log stores information required to roll back uncommitted transactions, It is also used to provide read consistency in multi-version concurrency control (MVCC) by preserving older versions of data for ongoing reads.
+<u>**Undo Log**</u> This log stores information required to roll back uncommitted transactions, It is also used to provide read consistency in multi-version concurrency control (MVCC) by preserving older versions of data for ongoing reads.
 
-**Binary Log (binlog)** Is a set of files that record all changes made to the database. This includes both data modifications (such as **INSERT**, **UPDATE**, and **DELETE**) and schema changes (such as creating or altering tables).
+<u>**Binary Log (binlog)**</u> Is a set of files that record all changes made to the database. This includes both data modifications (such as **INSERT**, **UPDATE**, and **DELETE**) and schema changes (such as creating or altering tables).
 
-**Buffer Pool** InnoDB uses a buffer pool in memory to cache frequently accessed data pages. 
+<u>**Buffer Pool**</u> InnoDB uses a buffer pool in memory to cache frequently accessed data pages. 
 
-**Dirty Pages** When data is modified, the corresponding pages in the buffer pool become "dirty" (modified but not yet written to disk).
+<u>**Dirty Pages**</u> When data is modified, the corresponding pages in the buffer pool become "dirty" (modified but not yet written to disk).
 
-**Fuzzy Checkpointing** Instead of flushing all dirty pages at once, InnoDB uses **fuzzy checkpointing**—a process that incrementally flushes dirty pages to disk. This approach reduces I/O overhead, maintains system performance, and ensures recoverability.
+<u>**Fuzzy Checkpointing**</u> Instead of flushing all dirty pages at once, InnoDB uses **fuzzy checkpointing**—a process that incrementally flushes dirty pages to disk. This approach reduces I/O overhead, maintains system performance, and ensures recoverability.
 
-**Purge**– A concept related to garbage collection, referring to the process of permanently removing records that have been marked for deletion and are no longer visible to any active transactions.
+<u>**Purge**</u>– A concept related to garbage collection, referring to the process of permanently removing records that have been marked for deletion and are no longer visible to any active transactions.
 
 ---
 
@@ -36,9 +36,9 @@
 
 To enable detailed crash recovery tracking, you'll need to edit the MySQL `my.ini` configuration file. This file uses an initialization (INI) format, organized into sections like [mysqld] and [client], each containing key-value pairs.
 
-**Steps:**
+**Steps:** [See this video for more details.](https://drive.google.com/file/d/1NB3T6G4NYPCYRZFkSigr9WoDdef2mc-s/view?usp=drive_link)
 
-1. Open Nodebad editor as administrator "`Run as administrator`".
+1. Open Nodebad editor as administrator "`Run as administrator`". 
 
 2. Open the Configuration File
 
@@ -189,32 +189,32 @@ gantt
 
 ### Simulating the Crash Event
 
-1. Create `bank` Database and `accounts` table.
+1. Create `bank` Database and `accounts` table. [See this video for Steps 1-2.](https://drive.google.com/file/d/10k4129xD5HKbah8kuCPYlzq5oZ5BlWww/view?usp=drive_link)
 
 2. Import the accounts data:
 
-    * Download the CSV file: [accounts]
+    * Download the CSV file: [accounts](https://drive.google.com/file/d/1_KvfWc6bVsb_P7KIh8H0dz9xO2Rj988E/view?usp=drive_link)
     * In MySQL Workbench, right-click on the Tables section under the bank database.
     * Select `Table Data Import Wizard`
     * Browse to the accounts file and follow the wizard steps.
 
-3. Open four separate sessions. In each one, paste the transaction and checkpoint scripts provided earlier.
+3. Open four separate sessions. In each one, paste the transaction and checkpoint scripts provided earlier.[See this video](https://drive.google.com/file/d/1khRH3ejxwYSZueXRfVSVxjKX1PvD2hos/view?usp=drive_link)
 
-4. Run Transaction 1.
+4. Run Transaction 1. [See this video for Steps 4-11.](https://drive.google.com/file/d/1O1B8nYDwlYocQw6Kxrm7SCaPEXPsTSHj/view?usp=drive_link)
 
 5. While Transaction 1 is waiting (use `DO SLEEP(20)`), run Transaction 2.
 
 6. Once Transaction 1 finishes, observe that Transaction 2 is still waiting. This is expected due to the use of REPEATABLE READ isolation and because T1 locks the entire table. Then, run the checkpoint session.
 
-7. Open PowerShell as Administrator, then run the following command to find the mysqld process ID. Look for the instance with the largest memory usage:
+7. Open PowerShell as Administrator, then run the following command to find the mysqld process ID. Look for the instance with the largest memory usage: [See this video for Steps 7-8.](https://drive.google.com/file/d/17z_MGc-UJWOYAFPdtU-5oJawyr3r0-Sb/view?usp=drive_link)
 ```Powershell
-    Get-Process "mysqld"
+Get-Process "mysqld"
 ```
 ![Install VC](images/mysqld-stop.png){ width=400 }
 
 8. Prepare the stop command. Replace `18964` with your actual process ID. Do not run it yet:
 ```Powershell
-    Stop-Process -Id 18964 -Force
+Stop-Process -Id 18964 -Force
 ```
 9. Run Transaction 3.
 
@@ -222,12 +222,12 @@ gantt
 
 11. Restart MySQL80 to simulate recovery after the crash.
 ```Powershell
-    Start-Service MySQL80 
+Start-Service MySQL80 
 ```
 
 !!! Note "You can also use **Task Manager** to stop the **mysqld** service and restart **MySQL80**."
 
-### Step-by-Step InnoDB Crash Recovery Process
+### Step-by-Step InnoDB Crash Recovery Process [See this video for more explanation.](https://drive.google.com/file/d/1UNoxnpRdp5zYBsyny-dWurfMDtLrR_0O/view?usp=drive_link)
 
 In this section, we’ll demonstrate the steps InnoDB takes to detect a crash and perform recovery, using insights drawn from our example log file. You can open the error log from:
 `C:\ProgramData\MySQL\MySQL Server 8.0\Data`
@@ -274,4 +274,58 @@ In this simulation, we used the error log, binary files, and multiple executions
 
 ---
 
-## Assignment
+## Assignment (Simulate Crash Recovery)
+
+
+!!! attention "Due Date on 19/7/2025"
+
+* <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
+* <span style="color: red;">You must use MySQL</span>, as this lab focuses specifically on the InnoDB storage engine.
+
+### What to assign: 
+
+1. Use the same database, table, and table data provided in the lab setup.
+
+2. Simulate the following crash recovery scenario:
+
+    a. **Transaction T1**: Begins before T2 and before the checkpoint, but remains uncommitted when the crash occurs.
+
+    b. **Transaction T2**: Begins after T1 and commits before the checkpoint is enforced.
+
+    c. **Transaction T3**: Begins after the checkpoint and commits before the crash. This should be a heavy transaction, so that the redo phase includes applying changes to modified pages.
+
+    ```mermaid
+    gantt
+    title Crash Recovery Timeline
+    dateFormat  HH:mm
+    axisFormat  %H:%M
+
+    section System Events  
+    Checkpoint        : milestone, cp, 10:04, 0m
+    Crash             : milestone, crash, 10:07, 0m
+
+    section Transactions  
+    T1 (Starts first, uncommitted):active, t2, 10:00, 8m
+    T2 (Starts during T1, commits) :done, t1, 10:01, 2m
+    T3 (Starts after Checkpoint, commits) :done, t3, 10:05, 2m
+    ```
+
+3. Identify:
+
+    * The LSN of the last checkpoint created by InnoDB.
+
+    * The latest LSN on the data file.
+
+    * The latest LSN in the redo log.
+
+4. Determine:
+
+    * When the redo phase begins.
+
+    * How many redo batches are executed.
+
+5. Provide evidence that transaction T3 was replayed during the redo phase. Observe the checkpoint activity based on InnoDB status during T3’s execution.
+
+6. Identify which transactions are undone during recovery. Support your answer using the transaction IDs observed in the InnoDB status while the transactions are active.
+
+7. Based on your study of ARIES, do you think InnoDB crash recovery is simpler or more complex? Explain your reasoning.
