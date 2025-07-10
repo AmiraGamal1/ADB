@@ -286,7 +286,7 @@ In this simulation, we used the error log, binary files, and multiple executions
 
 1. Use the same database, table, and table data provided in the lab setup.
 
-2. Simulate the following crash recovery scenario:
+2. Simulate the following crash recovery scenario, take a screenshot of each transaction, and identify which one is Transaction 1, Transaction 2, and Transaction 3:
 
     a. **Transaction T1**: Begins before T2 and before the checkpoint, but remains uncommitted when the crash occurs.
 

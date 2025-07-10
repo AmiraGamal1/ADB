@@ -951,7 +951,7 @@ InnoDB accesses the undo tablespaces to roll back any incomplete transactions. I
 <p>Use the same database, table, and table data provided in the lab setup.</p>
 </li>
 <li>
-<p>Simulate the following crash recovery scenario:</p>
+<p>Simulate the following crash recovery scenario, take a screenshot of each transaction, and identify which one is Transaction 1, Transaction 2, and Transaction 3:</p>
 <p>a. <strong>Transaction T1</strong>: Begins before T2 and before the checkpoint, but remains uncommitted when the crash occurs.</p>
 <p>b. <strong>Transaction T2</strong>: Begins after T1 and commits before the checkpoint is enforced.</p>
 <p>c. <strong>Transaction T3</strong>: Begins after the checkpoint and commits before the crash. This should be a heavy transaction, so that the redo phase includes applying changes to modified pages.</p>
