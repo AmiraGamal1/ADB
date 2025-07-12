@@ -28,8 +28,11 @@ In this lab, students will:
 - Create Tables: `students`, `courses`
 - Insert data
 
-![Alt text](relative/path/to/image.png)
-![Alt text](relative/path/to/image.png)
+![Create Database Screenshot](images/Create-DB.png)
+
+---
+
+![Create Database Screenshot](images/insert-data.png)
 
 ---
 
@@ -77,21 +80,24 @@ User can only view data; cannot insert, update, or delete.
 ### Test Instructions
 
 1. Log in as `data_viewer`.
-   ![Alt text](relative/path/to/image.png)
-
    
 2. Click the **( + )** icon on the welcome screen to **Add a New Connection**.
-   ![Alt text](relative/path/to/image.png)
+ 
+ 
+    ![Create Database Screenshot](images/New-Connection.png)
    
-   
+
 3. Fill out the connection details and click **Test Connection**.
-   ![Alt text](relative/path/to/image.png)
+ 
+  
+  ![Create Database Screenshot](images/Test-Connection.png)
 
-   
+
 4. When you receive a successful connection pop-up message, press **OK**.
-   ![Alt text](relative/path/to/image.png)
 
+   ![Create Database Screenshot](images/successful-connection.png)
 
+---
 
 
 ### Run the Following Code
@@ -116,14 +122,12 @@ UPDATE teachers SET salary = 90000 WHERE id = 1;
 ### Direct Grant vs Role-Based Access Control (RBAC)
 
 Granting privileges directly to users (e.g.,  
-`GRANT SELECT ON students TO 'data_viewer'`) works for individual access,  
-but using roles (e.g.,  
-`GRANT SELECT ON students TO 'readonly'; GRANT 'readonly' TO 'data_viewer';`)  
-is more scalable and easier to manage across multiple users.
+`GRANT SELECT ON students TO 'data_viewer'`) works for individual access,  but using roles (e.g.,  `GRANT SELECT ON students TO 'readonly';
+GRANT 'readonly' TO 'data_viewer';`) is more scalable and easier to manage across multiple users.
 
 ---
 
-## 4. Column-Level Encryption (Simulated)
+## 4. Column-Level Encryption 
 
 **What is it?**
 
