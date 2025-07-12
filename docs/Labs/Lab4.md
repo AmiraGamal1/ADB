@@ -1,6 +1,6 @@
-# Lab 4: Database Security Measures
+# Database Security Measures
 
-## Objective
+**Objective:**
 
 To teach students how to implement basic database security mechanisms including:
 
