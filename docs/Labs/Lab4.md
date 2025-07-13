@@ -295,7 +295,6 @@ EXECUTE stmt USING @name_input;
   - Decryption query and its output.
   - View comparing encrypted binary data vs readable decrypted results.
 
----
 
 ### 3. SQL Injection Methods: 
 
