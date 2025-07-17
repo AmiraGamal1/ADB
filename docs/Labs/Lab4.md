@@ -227,7 +227,11 @@ PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 ```
+
 **Effect:** Returns all users due to the injected
+
+![Create Database Screenshot](images/SQL-injection.png)
+
 ---
 
 ### Prevent SQL Injection- Safe Approach (Prepared Statements)
@@ -235,9 +239,10 @@ DEALLOCATE PREPARE stmt;
 Prepared statements separate SQL code from user input. Instead of embedding user input directly into a SQL query —which can be exploited by attackers— prepared statements use 
 placeholders (e.g., ?) for input values. These are known as parameters. An SQL statement template is created and sent to the database with these placeholders, while the actual
 data is supplied later. For example: `INSERT INTO MyGuests VALUES (?, ?, ?)` In this query, the values are not directly inserted into the SQL string; instead, they are safely 
-passed and bound at execution time. This ensures that user input is treated strictly as data, not executable code.
+passed and bound at execution time. This ensures that user input is treated strictly as data, not executable code. 
 
-The prepared statement execution consists of two stages: **prepare and execute.** 
+The process involves two key steps: preparing the statement and then executing it, and here are the steps to follow.
+
 
 **Step 1:** Prepare a safe query with a placeholder (Tells MySQL to prepare an SQL query in advance with a placeholder `?` for user input, which guarantees the query structure 
 is fixed and cannot be changed by user input.)
@@ -260,6 +265,7 @@ DEALLOCATE PREPARE stmt;
 --- 
 **Try** modifying the input to include something malicious, like `' OR '1'='1`. You will notice that MySQL treats it as a `string`, not as part of the `SQL logic`.
 
+
 ```sql
 
 PREPARE stmt FROM 'SELECT * FROM students WHERE name = ?';
@@ -269,6 +275,9 @@ EXECUTE stmt USING @name_input;
 ```
 
 **Expected Result:** No row will return.
+
+![Create Database Screenshot](images/Safe-Approach.png)
+
 --- 
 
 # What to assign:
@@ -303,6 +312,11 @@ EXECUTE stmt USING @name_input;
   - Common prevention methods (Prepared statements, Input sanitization, etc.) 
 
 ---
+# Assignment 4
+
+!!! attention "Due Date on 26/7/2025"
+
+* <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
 
 ## What to Submit
 
