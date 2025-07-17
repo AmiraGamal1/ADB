@@ -22,8 +22,8 @@
 Verifying a user's identity before granting database access.
 
 **Examples:**  
-✔ Username/password login validation  
-✔ Multi-factor authentication (MFA)  
+- Username/password login validation  
+- Multi-factor authentication (MFA)  
 
 **Purpose:**  
 Ensures only verified users can interact with the database system.
@@ -74,7 +74,6 @@ data viewing `Select` while preventing modifications `Update` and `Insert`. This
 
 Here we will create a read-only user named `data_viewer` and grant access to the tables `students` and `courses`.
 
-
 ```sql
 -- Create a new user
 CREATE USER 'data_viewer'@'localhost' IDENTIFIED BY 'viewerpass123';
@@ -83,6 +82,7 @@ CREATE USER 'data_viewer'@'localhost' IDENTIFIED BY 'viewerpass123';
 GRANT SELECT ON university_db.students TO 'analyst'@'localhost';
 GRANT SELECT ON university_db.courses TO 'analyst'@'localhost';
 ```
+
 ---
 ## 3. Create Roles and Assign to User
 
@@ -299,7 +299,7 @@ EXECUTE stmt USING @name_input;
 ### 3. SQL Injection Methods: 
 
 - **Report:**
-  - Brief explanation (1-2 pages) of what SQL injection is and why preventing it is important.
+  - Brief explanation (1-2 paragraphs) of what SQL injection is and why preventing it is important.
   - Common prevention methods (Prepared statements, Input sanitization, etc.) 
 
 ---
@@ -308,7 +308,7 @@ EXECUTE stmt USING @name_input;
 
 - A **PDF document** including:
   - Screenshots for each task, with a caption under each screenshot explaining what it shows.
-  - A (1-2 pages) report on SQL injection (as described above).
+  - A (1-2 paragraphs) report on SQL injection (as described above).
 
 
 
