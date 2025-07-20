@@ -107,26 +107,17 @@ GRANT 'readonly' TO 'data_viewer'@'localhost';
 The user can only view data; they cannot insert, update, or delete.
 
 ---
-### Test Instructions
+### **Test Instructions**
 
 1. Log in as `data_viewer`.
    
 2. Click the **( + )** icon on the welcome screen to **Add a New Connection**.
- 
- 
     ![Create Database Screenshot](images/New-Connection.png)
-   
-
 3. Fill out the connection details and click **Test Connection**.
- 
-  
    ![Create Database Screenshot](images/Test-Connection.png)
-
 4. Once the successful connection message appears, click **OK** to proceed.
-
    ![Create Database Screenshot](images/successful-connection.png)
-
-5. Run the Following Code in the data viewer editor
+5. Run the Following Code in the data viewer editor.
 ```sql
 -- Activate the readonly role
 SET ROLE 'readonly';
