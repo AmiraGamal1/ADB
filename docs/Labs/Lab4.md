@@ -300,16 +300,16 @@ EXECUTE stmt USING @name_input;
   - Data can be safely decrypted.
 
 - **Screenshot Requirements:**
-  - Encrypted data insertion.
-  - Decryption query and its output.
-  - View comparing encrypted binary data vs readable decrypted results.
+    - Encrypted data insertion.
+    - Decryption query and its output.
+    - View comparing encrypted binary data vs readable decrypted results.
 
 
 ### 3. SQL Injection Methods: 
 
 - **Report:**
-  - Brief explanation (1-2 paragraphs) of what SQL injection is and why preventing it is important.
-  - Common prevention methods (Prepared statements, Input sanitization, etc.) 
+    - Brief explanation (1-2 paragraphs) of what SQL injection is and why preventing it is important.
+    - Common prevention methods (Prepared statements, Input sanitization, etc.) 
 
 ---
 # Assignment 4
@@ -321,8 +321,8 @@ EXECUTE stmt USING @name_input;
 ## What to Submit
 
 - A **PDF document** including:
-  - Screenshots for each task, with a caption under each screenshot explaining what it shows.
-  - A (1-2 paragraphs) report on SQL injection (as described above).
+    - Screenshots for each task, with a caption under each screenshot explaining what it shows.
+    - A (1-2 paragraphs) report on SQL injection (as described above).
 
 
 
