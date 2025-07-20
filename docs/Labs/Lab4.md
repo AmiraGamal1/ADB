@@ -282,7 +282,7 @@ EXECUTE stmt USING @name_input;
 
 # What to assign:
 
-### 1. Create users and privilege assignments:
+### **1. Create users and privilege assignments:**
 
   - One user with **read-only access** to the entire database. [Direct Grant]
   - One user with **read, insert and Update ** permissions, but **no delete**. [Role-Based Access Control: A data-entry role]
@@ -293,7 +293,7 @@ EXECUTE stmt USING @name_input;
   - Evidence of successful and failed attempts to access or modify tables or columns.
 
 
-### 2.  Encrypt a sensitive column (e.g., national ID).
+### **2. Encrypt a sensitive column (e.g., national ID):**
 
 #### Show how:
   - Data looks when encrypted.
@@ -305,7 +305,7 @@ EXECUTE stmt USING @name_input;
    - View comparing encrypted binary data vs readable decrypted results.
 
 
-### 3. SQL Injection Methods: 
+### **3. SQL Injection Methods:**
 
 #### **Report:**
   - Brief explanation (1-2 paragraphs) of what SQL injection is and why preventing it is important.
