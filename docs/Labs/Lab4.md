@@ -274,7 +274,7 @@ EXECUTE stmt USING @name_input;
 ### **1. Create users and privilege assignments:**
 
   - One user with **read-only access** to the entire database. [Direct Grant]
-  - One user with **read, insert and Update ** permissions, but **no delete**. [Role-Based Access Control: A data-entry role]
+  - One user with **read, insert and Update** permissions, but **no delete**. [Role-Based Access Control: A data-entry role]
   - One user with access to **only specific columns** (e.g., can view names but **not emails or IDs**). [Direct Grant]
 
 - **Screenshot Requirements:**
