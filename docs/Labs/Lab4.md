@@ -122,15 +122,11 @@ The user can only view data; they cannot insert, update, or delete.
   
    ![Create Database Screenshot](images/Test-Connection.png)
 
-
 4. Once the successful connection message appears, click **OK** to proceed.
 
    ![Create Database Screenshot](images/successful-connection.png)
 
-   
-
-6. Run the Following Code in the data viewer editor
-
+5. Run the Following Code in the data viewer editor
 ```sql
 -- Activate the readonly role
 SET ROLE 'readonly';
@@ -147,6 +143,8 @@ INSERT INTO students (name, email) VALUES ('Test User', 'test@example.com');
 --  This should fail (no UPDATE permission for the teacher table)
 UPDATE teachers SET salary = 90000 WHERE id = 1;
 ```
+
+
 ---
 
 ### Direct Grant vs Role-Based Access Control (RBAC)
