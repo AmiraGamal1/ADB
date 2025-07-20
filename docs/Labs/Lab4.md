@@ -1,6 +1,6 @@
 # Database Security Measures
 
-**Objective:**
+## **Objective:**
 
 - Understand  security principles, including authentication, authorization, and access controls.
   
@@ -13,10 +13,23 @@
 - Simulate SQL injection attacks and explain prevention methods such as prepared statements.
 
 
----
-#  Database Security Principles
+## **Lab Content:**
+- Database Security Principles
+    1. Authentication
+    2. Authorization
+- Practical Implementation of Database Security Concepts
+    1. Create Database and Tables
+    2. Create User Roles and Assign Permissions
+    3. Create Roles and Assign to User
+    4. Column-Level Encryption 
+    5. Simulate SQL Injection & Prevention
+- Assignment Instructions
+  
 
-## 1. Authentication
+---
+## Database Security Principles
+
+### 1. Authentication
 
 **Definition:**  
 Verifying a user's identity before granting database access.
@@ -30,7 +43,7 @@ Ensures only verified users can interact with the database system.
 
 ---
 
-## 2. Authorization
+### 2. Authorization
 
 **Definition:**  
 Determines what actions authenticated users are allowed to perform, such as read, write, or modify.
@@ -51,7 +64,7 @@ or group is allowed to access, access controls are the mechanisms used to enforc
 
 ---
 
-## Tasks & Examples
+## Practical Implementation of Database Security Concepts
 
 ## 1. Create Database and Tables
 
@@ -189,7 +202,7 @@ FROM students;
 
 ---
 
-## 4. Simulate SQL Injection & Prevention
+## 5. Simulate SQL Injection & Prevention
 
 SQL injection is a common attack where an attacker inserts malicious SQL code into input fields to manipulate queries. This section demonstrates an unsafe query and
 how to prevent it using the prepared statements technique.
