@@ -5,7 +5,7 @@ nav:
   - Lab 1: Labs/Lab1.md
   - Lab 2: Labs/Lab2.md
   - Lab 3: Labs/Lab3.md
-#  - Lab 4: Labs/Lab4.md
+  - Lab 4: Labs/Lab4.md
 site_name: Advanced Database Labs
 site_author: "Amira Nasreldeein, Aseel, Salma"
 site_description: "A collection of lab assignments for the ADB 2025 course."
