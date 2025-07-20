@@ -120,7 +120,7 @@ The user can only view data; they cannot insert, update, or delete.
 3. Fill out the connection details and click **Test Connection**.
  
   
-  ![Create Database Screenshot](images/Test-Connection.png)
+   ![Create Database Screenshot](images/Test-Connection.png)
 
 
 4. Once the successful connection message appears, click **OK** to proceed.
@@ -230,7 +230,7 @@ DEALLOCATE PREPARE stmt;
 
 **Effect:** Returns all users due to the injected
 
-![Create Database Screenshot](images/SQL-injection.png)
+  ![Create Database Screenshot](images/SQL-injection.png)
 
 ---
 
@@ -276,7 +276,7 @@ EXECUTE stmt USING @name_input;
 
 **Expected Result:** No row will return.
 
-![Create Database Screenshot](images/Safe-Approach.png)
+  ![Create Database Screenshot](images/Safe-Approach.png)
 
 --- 
 
