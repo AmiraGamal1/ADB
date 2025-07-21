@@ -281,7 +281,7 @@ EXECUTE stmt USING @name_input;
   ![Create Database Screenshot](images/Safe-Approach.png)
 
 --- 
-
+# Assignment 4
 # What to assign:
 
 ### **1. Create users and privilege assignments:**
@@ -314,11 +314,6 @@ EXECUTE stmt USING @name_input;
   - Common prevention methods (Prepared statements, Input sanitization, etc.) 
 
 ---
-# Assignment 4
-
-!!! attention "Due Date on 26/7/2025"
-
-* <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
 
 ## What to Submit
 
@@ -326,6 +321,8 @@ EXECUTE stmt USING @name_input;
   - Screenshots for each task, with a caption under each screenshot explaining what it shows.
   - A (1-2 paragraphs) report on SQL injection (as described above).
 
+!!! attention "Due Date on 26/7/2025"
 
+* <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
 
 
