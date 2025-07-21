@@ -321,7 +321,7 @@ EXECUTE stmt USING @name_input;
   - Screenshots for each task, with a caption under each screenshot explaining what it shows.
   - A (1-2 paragraphs) report on SQL injection (as described above).
 
-!!! attention "Due Date on 26/7/2025"
+!!! attention "Due Date on 29/7/2025"
 
 * <span style="color: red;"> Please review the general lab structure requirements [here](general_instructions.md) </span>
 
