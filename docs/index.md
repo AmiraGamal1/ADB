@@ -35,7 +35,7 @@ Each lab builds on the previous one. Please complete them in sequence:
 
 !!! note
     You can download a single PDF that contains all labs. It will be updated each time a new lab is uploaded.  
-    📄 [Download](pdfs/document.pdf)"
+    📄 [Download](pdfs/documents.pdf)"
 
 ##  What You Should Do
 !!! info "Each lab includes an **assignment** that you are expected to complete as part of the learning process.<span style="color: red;"> Please submit the assignments on time.</span>"
